@@ -1,0 +1,8 @@
+# filepath: /Users/cedricstillecke/Documents/CloudExplain/DataScienceTutorial/requirements.txt
+jupyter
+ipykernel
+numpy
+pandas
+matplotlib
+scikit-learn
+seaborn
