@@ -1,0 +1,5 @@
+kaggle.json
+.venv/
+.DS_Store
+titanic
+titanic.zip
