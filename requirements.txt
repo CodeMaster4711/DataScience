@@ -6,3 +6,6 @@ pandas
 matplotlib
 scikit-learn
 seaborn
+pyarrow
+fastparquet
+openpyxl
