@@ -5,3 +5,5 @@ titanic
 titanic.zip
 housing.csv
 california-housing-prices.zip
+catboost_info
+best_model.joblib

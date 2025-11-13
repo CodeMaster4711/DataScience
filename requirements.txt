@@ -1,4 +1,3 @@
-# filepath: /Users/cedricstillecke/Documents/CloudExplain/DataScienceTutorial/requirements.txt
 jupyter
 ipykernel
 numpy
@@ -9,3 +8,6 @@ seaborn
 pyarrow
 fastparquet
 openpyxl
+lightgbm
+xgboost
+catboost
