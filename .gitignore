@@ -1,9 +1,40 @@
+# Credentials
 kaggle.json
+
+# Virtual Environment
 .venv/
+venv/
+env/
+
+# OS Files
 .DS_Store
+*.swp
+*.swo
+
+# Data Files
+*.csv
+!housing.csv
+california-housing-prices.zip
+
+# Models & Weights
+*.pkl
+*.pth
+*.joblib
+*.h5
+*.npy
+
+# Training Artifacts
+catboost_info/
+mlruns/
+wandb/
+tensorboard/
+
+# Cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Legacy/Archived
 titanic
 titanic.zip
-housing.csv
-california-housing-prices.zip
-catboost_info
-best_model.joblib
