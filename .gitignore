@@ -38,3 +38,7 @@ __pycache__/
 # Legacy/Archived
 titanic
 titanic.zip
+
+mnist-in-csv.zip
+MNIST/raw/
+fashionmnist/data/
