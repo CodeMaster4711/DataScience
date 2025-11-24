@@ -42,3 +42,5 @@ titanic.zip
 mnist-in-csv.zip
 MNIST/raw/
 fashionmnist/data/
+
+data/
