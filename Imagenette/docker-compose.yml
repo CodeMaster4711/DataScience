@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  wandb-local:
+    image: wandb/local:latest
+    container_name: wandb-local
+    ports:
+      - "8080:8080"
+    volumes:
+      # Persistente Daten - W&B Datenbank und Runs
+      - ./wandb-data:/vol
+      # Optional: Mount für direkten Zugriff auf Runs
+      - ./wandb-data/runs:/vol/runs
+    environment:
+      # W&B Server Konfiguration
+      - LOCAL_RESTORE=true
+      - WANDB_BASE_URL=http://localhost:8080
+      # Optional: Lizenz Key (falls du eine hast)
+      # - LICENSE=your-license-key-here
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - wandb-network
+
+networks:
+  wandb-network:
+    driver: bridge
+
+# Volumes Erklärung:
+# - ./wandb-data:/vol - Alle W&B Daten (Datenbank, Runs, Artifacts)
+#   persistiert auf deinem Host in ./wandb-data/
+#
+# Zugriff:
+# - Dashboard: http://localhost:8080
+# - API: http://localhost:8080/api
+#
+# Befehle:
+# - Start: docker-compose up -d
+# - Stop: docker-compose down
+# - Logs: docker-compose logs -f wandb-local
+# - Restart: docker-compose restart

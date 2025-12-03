@@ -44,3 +44,5 @@ MNIST/raw/
 fashionmnist/data/
 
 data/
+
+wandb-data/
