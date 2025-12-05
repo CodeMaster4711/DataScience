@@ -1,0 +1,61 @@
+# Training Outputs
+outputs/
+generated_samples/
+checkpoints/
+samples/
+logs/
+
+# Experiment Tracking
+wandb/
+mlruns/
+tensorboard/
+
+# Data
+data/
+datasets/
+*.tar
+*.tar.gz
+
+# Model Files
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+*.cache
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Config files with sensitive data (if any)
+# Uncomment if needed:
+# *_secret.json
+# credentials.json

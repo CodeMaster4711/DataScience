@@ -11,3 +11,21 @@ openpyxl
 lightgbm
 xgboost
 catboost
+
+# Deep Learning (PyTorch)
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Experiment tracking
+wandb
+python-dotenv
+
+# Progress bars
+tqdm
+
+# Fast.ai (for dataset utilities)
+fastai
+
+# Additional utilities
+Pillow
