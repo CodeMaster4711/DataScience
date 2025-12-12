@@ -21,7 +21,7 @@ class TextGenerator:
         """
         # Load checkpoint
         print(f"Loading checkpoint from {checkpoint_path}...")
-        checkpoint = torch.load(checkpoint_path, map_location='cpu')
+        checkpoint = torch.load(checkpoint_path, map_location='cpu', weights_only=False)
 
         # Get config from checkpoint
         self.config = checkpoint['config']

@@ -303,7 +303,7 @@ class Trainer:
 
     def load_checkpoint(self, filename):
         """Load model checkpoint"""
-        checkpoint = torch.load(self.checkpoint_dir / filename, map_location=self.device)
+        checkpoint = torch.load(self.checkpoint_dir / filename, map_location=self.device, weights_only=False)
         self.model.load_state_dict(checkpoint['model_state_dict'])
         self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
