@@ -47,3 +47,4 @@ fashionmnist/data/
 data/
 
 wandb-data/
+checkpoints/
