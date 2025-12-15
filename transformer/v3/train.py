@@ -145,7 +145,10 @@ class Trainer:
                 # Forward pass
                 logits, loss = self.model(input_ids, target_ids)
 
-                # Scale loss for gradient accumulation
+                # CRITICAL: Save unscaled loss for metrics BEFORE scaling!
+                unscaled_loss = loss.item()
+
+                # Scale loss for gradient accumulation (ONLY for backward pass!)
                 loss = loss / self.config.gradient_accumulation_steps
 
             # Backward pass with gradient scaling
@@ -177,17 +180,17 @@ class Trainer:
                 self.optimizer.zero_grad()
                 accumulation_counter = 0
 
-            # Calculate perplexity (loss is already scaled, don't multiply again!)
-            perplexity = math.exp(loss.item())
+            # Calculate perplexity using UNSCALED loss (the REAL loss!)
+            perplexity = math.exp(unscaled_loss)
 
-            # Track metrics (loss is already scaled)
-            total_loss += loss.item()
+            # Track metrics using UNSCALED loss (the REAL loss!)
+            total_loss += unscaled_loss
             num_tokens = (target_ids != -100).sum().item()
             total_tokens += num_tokens
 
-            # Update progress bar
+            # Update progress bar (using UNSCALED loss for display!)
             pbar.set_postfix({
-                'loss': f'{loss.item():.4f}',
+                'loss': f'{unscaled_loss:.4f}',
                 'ppl': f'{perplexity:.2f}',
                 'lr': f'{self.optimizer.param_groups[0]["lr"]:.2e}',
                 'acc': f'{accumulation_counter}/{self.config.gradient_accumulation_steps}'
@@ -197,10 +200,10 @@ class Trainer:
             if accumulation_counter == 0:
                 self.global_step += 1
 
-            # Log to wandb (only after optimizer step)
+            # Log to wandb (only after optimizer step, using UNSCALED loss!)
             if accumulation_counter == 0 and self.config.use_wandb and self.global_step % self.config.log_interval == 0:
                 wandb.log({
-                    'train/loss': loss.item(),
+                    'train/loss': unscaled_loss,
                     'train/perplexity': perplexity,
                     'train/learning_rate': self.optimizer.param_groups[0]['lr'],
                     'train/tokens': total_tokens,
